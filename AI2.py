@@ -65,10 +65,11 @@ model.add(Dense(units=64, activation='relu'))
 model.add(Dense(units=1, activation='sigmoid'))
 
 model.compile(loss="binary_crossentropy", optimizer="sgd", metrics="accuracy")
-x_predictions = numpy.array(Get_surround([1,1], load_level(PATH)))
+x_predictions = Get_surround([1,1], load_level(PATH))
+X = numpy.asarray(x_predictions).astype(numpy.float32)
 
 model = load_model("Model-1")
-a = model.predict(x_predictions, verbose=0)[0]
+a = model.predict(X, verbose=0)[0]
 print(a)
 #model.fit(TrainingData[0], TrainingData[1], epochs=200, batch_size=32)
 #model.save("Model-1")
